@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../components/Button";
-import GradientCirclesForLoginPage from "../components/GradientCirclesForLoginPage";
+import GradientCirclesForLoginPage from "../assets/GradientCirclesForLoginPage";
 
 export default function Signup() {
   return (

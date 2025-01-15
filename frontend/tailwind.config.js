@@ -9,6 +9,7 @@ export default {
     extend: {
       backgroundImage: {
         main: "url('../src/assets/images/bg_main.png')",
+        subscription: "url('../src/assets/images/bg_subscription.png')",
       },
       fontFamily: {
         orbitron: ["Orbitron", "sans-serif"],
