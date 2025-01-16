@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@mui/material";
 
 export default function Button({
   children,
@@ -10,23 +10,15 @@ export default function Button({
   style,
   to,
 }) {
-  if (to && !type) {
+  if (to && type !== "submit") {
     return (
       <Link to={to} className={className}>
         {children}
       </Link>
     );
   }
-  if (to && type) {
-    return (
-      <Link to={to}>
-        <button className={className} type={type}>
-          {children}
-        </button>
-      </Link>
-    );
-  }
-  if (variant === "primary")
+
+  if (variant === "primary") {
     return (
       <button
         style={{
@@ -36,10 +28,13 @@ export default function Button({
           className ? className : ""
         } bg-red-500 text-white pl-4 pr-6 py-2 hover:bg-red-900 ease-in-out duration-300`}
         onClick={onClick}
+        type={type}
       >
         {children}
       </button>
     );
+  }
+
   return (
     <button style={style} type={type} className={className} onClick={onClick}>
       {children}
