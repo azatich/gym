@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export default function Button({
   children,
@@ -12,7 +12,7 @@ export default function Button({
 }) {
   if (to && type !== "submit") {
     return (
-      <Link to={to} className={className}>
+      <Link to={to} className={`${className ? className : ""}`}>
         {children}
       </Link>
     );

@@ -4,9 +4,11 @@ import logo from "../assets/images/logo.png";
 import Button from "./Button";
 import Menu from "./Menu";
 import HamburgerMenu from "../assets/HamburgerMenu";
+import { useSelector } from "react-redux";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const user = useSelector((state) => state.user.user);
 
   return (
     <header className="flex justify-between items-center py-4 px-5 lg:px-20 bg-transparent">
@@ -52,11 +54,25 @@ export default function Header() {
         </NavLink>
       </nav>
 
-      {/* Sign Up Button */}
       <div className="hidden lg:block">
-        <Button variant="primary" className="font-outfit">
-          Sign up
-        </Button>
+        {user ? (
+          <div className="flex gap-4">
+            <div className="uppercase font-outfit text-2xl text-white">
+              {user.username}
+            </div>
+            <Button variant="primary" className="font-outfit">
+              Sign out
+            </Button>
+          </div>
+        ) : (
+          <Button
+            to="/signup"
+            variant="primary"
+            className="bg-red-500 text-white pl-4 pr-6 py-2 hover:bg-red-900 ease-in-out duration-300"
+          >
+            Sign up
+          </Button>
+        )}
       </div>
     </header>
   );

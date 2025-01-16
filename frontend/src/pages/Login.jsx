@@ -1,8 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../components/Button";
 import GradientCirclesForLoginPage from "../assets/GradientCirclesForLoginPage";
+import { loginUser } from "../services/api";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../features/user/userSlice";
 
 export default function Login() {
+  const [emailOrUsername, setEmailOrUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    if (!emailOrUsername || !password) {
+      setError("All fields are required");
+      return;
+    }
+
+    try {
+      const data = await loginUser(emailOrUsername, password);
+      dispatch(setUser(data.user));
+      setMessage(data);
+      setError("");
+      navigate("/");
+    } catch (err) {
+      setError(err.detail || "Invalid credentials. Please try again.");
+      console.log("Login error:", err);
+    }
+  }
+
   return (
     <div className="w-full h-screen flex items-center gap-10 bg-black">
       <GradientCirclesForLoginPage />
@@ -11,7 +43,7 @@ export default function Login() {
           Welcome Back!
         </span>
       </div>
-      <div className="w-7/12 flex justify-start">
+      <form onSubmit={handleSubmit} className="w-7/12 flex justify-start">
         <div className="w-[300px] h-[500px] rounded-2xl border-2 border-[#626262] backdrop-blur-xl">
           <div className="p-8">
             <h1 className="text-left text-white font-outfit text-3xl font-medium">
@@ -22,11 +54,15 @@ export default function Login() {
             </span>
             <input
               type="text"
+              value={emailOrUsername}
+              onChange={(e) => setEmailOrUsername(e.target.value)}
               placeholder="Email or username"
               className="w-full bg-transparent font-outfit text-white font-extralight text-sm placeholder:text-white border-[1px] rounded-lg px-3 py-[5px] mt-7 outline-none"
             />
             <input
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
               className="w-full bg-transparent font-outfit text-white font-extralight text-sm placeholder:text-white border-[1px] rounded-lg px-3 py-[5px] mt-4 outline-none"
             />
@@ -50,6 +86,11 @@ export default function Login() {
             >
               Login
             </Button>
+            {error && (
+              <p className="text-red-500 font-outfit text-sm text-center mt-3">
+                {error}
+              </p>
+            )}
             <Button className="w-full text-center text-white font-outfit text-sm hover:underline font-light">
               Forgot password?
             </Button>
@@ -152,7 +193,7 @@ export default function Login() {
             </div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

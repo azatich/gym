@@ -2,41 +2,41 @@ import React, { useState } from "react";
 import Button from "../components/Button";
 import GradientCirclesForLoginPage from "../assets/GradientCirclesForLoginPage";
 import { registerUser } from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-    confirmPassword: "",
-    email: "",
-  });
-  const [message, setMessage] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confPassword, setConfPassword] = useState("");
   const [error, setError] = useState("");
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate passwords match
-    if (formData.password !== formData.confirmPassword) {
+    if (!username || !email || !password || !confPassword) {
+      setError("All fields are required");
+      return;
+    }
+
+    if (password !== confPassword) {
       setError("Passwords do not match");
       return;
     }
 
     try {
-      const data = await registerUser(
-        formData.username,
-        formData.password,
-        formData.email
-      );
-      setMessage(data.message); // Success message from backend
+      const data = await registerUser(username, password, email);
+      setMessage(data);
+      navigate("/login");
       setError("");
     } catch (err) {
-      setError(err.error || "An error occurred"); // Error from backend
+      setError(
+        err.username?.[0] ||
+          err.email?.[0] ||
+          "An error occurred. Please try again."
+      );
     }
   };
 
@@ -62,32 +62,32 @@ export default function Signup() {
               type="text"
               name="email"
               placeholder="Email"
-              onChange={handleChange}
-              value={formData.email}
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
               className="w-full bg-transparent font-outfit text-white font-extralight text-sm placeholder:text-white border-[1px] rounded-lg px-3 py-[5px] mt-7 outline-none"
             />
             <input
               type="text"
               name="username"
               placeholder="Username"
-              value={formData.username}
-              onChange={handleChange}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               className="w-full bg-transparent font-outfit text-white font-extralight text-sm placeholder:text-white border-[1px] rounded-lg px-3 py-[5px] mt-4 outline-none"
             />
             <input
               type="password"
               name="password"
               placeholder="Password"
-              value={formData.password}
-              onChange={handleChange}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full bg-transparent font-outfit text-white font-extralight text-sm placeholder:text-white border-[1px] rounded-lg px-3 py-[5px] mt-4 outline-none"
             />
             <input
               type="password"
               name="confirmPassword"
               placeholder="Confirm password"
-              value={formData.confirmPassword}
-              onChange={handleChange}
+              value={confPassword}
+              onChange={(e) => setConfPassword(e.target.value)}
               className="w-full bg-transparent font-outfit text-white font-extralight text-sm placeholder:text-white border-[1px] rounded-lg px-3 py-[5px] mt-4 outline-none"
             />
             <Button
@@ -99,11 +99,6 @@ export default function Signup() {
             {error && (
               <p className="text-red-500 font-outfit text-sm text-center mt-3">
                 {error}
-              </p>
-            )}
-            {message && (
-              <p className="text-green-500 font-outfit text-sm text-center mt-3">
-                {message}
               </p>
             )}
           </div>
