@@ -25,7 +25,10 @@ export default function Login() {
 
     try {
       const data = await loginUser(emailOrUsername, password);
-      dispatch(setUser(data.user));
+      localStorage.setItem('access_token', data.access_token);
+      localStorage.setItem('username', data.username);
+
+      dispatch(setUser(data.username));
       setMessage(data);
       setError("");
       navigate("/");

@@ -1,0 +1,146 @@
+
+.list:hover .item:not(:hover) {
+    filter: grayscale(0.8) blur(5px);
+    transition: 0.3s ease-in-out;
+}
+  
+  .lineWithCircle {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 20px;
+  }
+  
+  .line {
+    height: 2px;
+    width: 80px;
+    background: red;
+  }
+  
+  .circle {
+    position: relative;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .innerCircle {
+    position: absolute; /* Ensure it's relative to the parent */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Precisely center within the parent */
+    width: 15px;
+    height: 15px;
+    border-radius: 50%; /* Make it a perfect circle */
+    background: rgb(255, 72, 0); /* Different color to highlight */
+    opacity: 0.5;
+  }
+
+  .innerCircle2 {
+    position: absolute; /* Ensure it's relative to the parent */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Precisely center within the parent */
+    width: 25px; /* Larger than the parent circle */
+    height: 25px; /* Larger than the parent circle */
+    border-radius: 50%; /* Make it a perfect circle */
+    background: rgb(255, 0, 0); /* Different color to highlight */
+    opacity: 0.5;
+  }
+
+  @media screen and (min-width: 640px) {
+    .line {
+        width: 80px;
+    }
+    .circle {
+        width: 5px;
+        height: 5px;
+    }
+    .innerCircle {
+        width: 15px;
+        height: 15px;
+    }
+    .innerCircle2 {
+        width: 25px;
+        height: 25px;
+    }
+  }
+
+  @media screen and (min-width: 767px) {
+    .line {
+        width: 80px;
+    }
+    .circle {
+        width: 5px;
+        height: 5px;
+    }
+    .innerCircle {
+        width: 15px;
+        height: 15px;
+    }
+    .innerCircle2 {
+        width: 25px;
+        height: 25px;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .line {
+        width: 100px;
+    }
+    .circle {
+        width: 10px;
+        height: 10px;
+    }
+    .innerCircle {
+        width: 20px;
+        height: 20px;
+    }
+    .innerCircle2 {
+        width: 30px;
+        height: 30px;
+    }
+  }
+  
+  @media screen and (min-width: 1280px) {
+    .line {
+        width: 150px;
+    }
+    .circle {
+        width: 15px;
+        height: 15px;
+    }
+    .innerCircle {
+        width: 30px;
+        height: 30px;
+    }
+    .innerCircle2 {
+        width: 45px;
+        height: 45px;
+    }
+  }
+
+  @media screen and (min-width: 1536px) {
+    .line {
+        width: 180px;
+    }
+    .circle {
+        width: 15px;
+        height: 15px;
+    }
+    .innerCircle {
+        width: 30px;
+        height: 30px;
+    }
+    .innerCircle2 {
+        width: 45px;
+        height: 45px;
+    }
+  }
+  
+  

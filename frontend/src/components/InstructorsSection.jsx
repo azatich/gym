@@ -3,10 +3,11 @@ import instructor1 from "../assets/images/instructor1.png";
 import instructor2 from "../assets/images/instructor2.png";
 import instructor3 from "../assets/images/instructor3.png";
 import instructor4 from "../assets/images/instructor4.png";
+import Section from "./Section";
 
-export default function InstructorsSection() {
+export default function InstructorsSection({ instructors }) {
   return (
-    <div className="relative h-screen mt-16">
+    <Section className="relative h-screen mt-16" ref={instructors}>
       <h1 className="text-center text-white text-4xl font-outfit font-medium">
         Instructors
       </h1>
@@ -72,6 +73,6 @@ export default function InstructorsSection() {
           </div>
         </div>
       </div>
-    </div>
+    </Section>
   );
 }

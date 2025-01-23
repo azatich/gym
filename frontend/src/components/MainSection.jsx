@@ -1,11 +1,11 @@
 import React from "react";
 import Button from "./Button";
 import { motion } from "motion/react";
+import Section from "./Section";
 
-export default function MainContent() {
+export default function MainSection() {
   return (
-    <div className="pt-20 px-5 sm:pt-40 sm:px-10 lg:px-20">
-      {/* Heading */}
+    <Section className="relative pt-20 px-5 sm:pt-40 sm:px-10 lg:px-20">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -24,7 +24,6 @@ export default function MainContent() {
         </p>
       </motion.div>
 
-      {/* Paragraph */}
       <div className="mt-6 sm:mt-8 lg:mt-10 max-w-full lg:max-w-[570px]">
         <motion.p
           initial={{ opacity: 0, y: 30 }}
@@ -39,14 +38,6 @@ export default function MainContent() {
           you reach your peak performance.
         </motion.p>
       </div>
-
-      {/* Button */}
-      <Button
-        className="mt-8 sm:mt-10 font-outfit w-full sm:w-auto"
-        variant="primary"
-      >
-        Start free trial
-      </Button>
-    </div>
+    </Section>
   );
 }

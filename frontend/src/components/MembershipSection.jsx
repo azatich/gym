@@ -2,10 +2,14 @@ import React from "react";
 import dumbbell from "../assets/images/dumbbell.png";
 import Button from "./Button";
 import { motion } from "motion/react";
+import Section from "./Section";
 
-export default function SubscriptionSection() {
+export default function MembershipSection({ membership }) {
   return (
-    <div className="mt-20 pb-20 bg-subscription bg-cover bg-no-repeat">
+    <Section
+      className="mt-20 pb-20 bg-subscription bg-cover bg-no-repeat"
+      ref={membership}
+    >
       <motion.h1
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -112,6 +116,6 @@ export default function SubscriptionSection() {
           </div>
         </motion.div>
       </div>
-    </div>
+    </Section>
   );
 }

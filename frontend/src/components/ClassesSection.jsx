@@ -4,15 +4,16 @@ import zumba from "../assets/images/zumba.png";
 import yoga from "../assets/images/yoga.png";
 import martial from "../assets/images/martial.png";
 import { motion } from "motion/react";
+import Section from "./Section";
 
-export default function TrainingSection() {
+export default function ClassesSection({ classes }) {
   return (
-    <div className="relative">
+    <Section className="relative" ref={classes}>
       <div className="mt-10 sm:mt-20">
         <h1 className="text-center text-white text-3xl sm:text-4xl font-outfit font-medium">
           Find What Moves You
         </h1>
-        <div className="flex flex-wrap justify-center gap-10 sm:gap-16 mt-8 px-5 sm:px-10 lg:px-20">
+        <div className="flex flex-wrap justify-center gap-10 md:gap-10 mt-8 px-5">
           {/* Gym Card */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -30,7 +31,7 @@ export default function TrainingSection() {
                 />
                 <div className="absolute w-full inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-tl-[50px]" />
               </div>
-              <div className="flex flex-col gap-4 max-w-[350px] sm:max-w-[500px] mt-4">
+              <div className="flex flex-row gap-4 max-w-[350px] sm:max-w-[500px] mt-4">
                 <span className="text-white font-outfit text-4xl sm:text-6xl">
                   GYM
                 </span>
@@ -52,7 +53,7 @@ export default function TrainingSection() {
             className="w-5/12 md:w-2/12 flex justify-center relative"
           >
             <div className="relative">
-              <div className="absolute text-white text-xl sm:text-2xl lg:text-3xl font-outfit bottom-2 left-3 z-10">
+              <div className="absolute text-white text-xl sm:text-2xl lg:text-3xl font-outfit bottom-4 left-3 z-10">
                 Zumba
               </div>
               <img
@@ -73,7 +74,7 @@ export default function TrainingSection() {
             className="w-5/12 md:w-2/12 flex justify-center relative"
           >
             <div className="relative">
-              <div className="absolute text-white text-xl sm:text-2xl lg:text-3xl font-outfit bottom-2 left-3 z-10">
+              <div className="absolute text-white text-xl sm:text-2xl lg:text-3xl font-outfit bottom-4 left-3 z-10">
                 Yoga
               </div>
               <img
@@ -94,7 +95,7 @@ export default function TrainingSection() {
             className="w-5/12 md:w-2/12 flex justify-center relative"
           >
             <div className="relative">
-              <div className="absolute text-white text-xl sm:text-2xl lg:text-3xl font-outfit bottom-2 left-3 z-10">
+              <div className="absolute text-white text-xl sm:text-2xl lg:text-3xl font-outfit bottom-4 left-3 z-10">
                 Martial <br />
                 Arts
               </div>
@@ -108,6 +109,6 @@ export default function TrainingSection() {
           </motion.div>
         </div>
       </div>
-    </div>
+    </Section>
   );
 }

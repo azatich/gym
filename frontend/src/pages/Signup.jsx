@@ -27,15 +27,15 @@ export default function Signup() {
     }
 
     try {
-      const data = await registerUser(username, password, email);
-      setMessage(data);
-      navigate("/login");
+      await registerUser(username, password, email);
+      setMessage("User registered successfully! Redirecting...");
       setError("");
+      navigate("/login");
     } catch (err) {
       setError(
         err.username?.[0] ||
           err.email?.[0] ||
-          "An error occurred. Please try again."
+          `${err}`
       );
     }
   };
@@ -49,9 +49,9 @@ export default function Signup() {
           Your Journey Begins Here!
         </span>
       </div>
-      <form onSubmit={handleSubmit} className="w-7/12 flex justify-start">
+      <div className="w-7/12 flex justify-start">
         <div className="w-[300px] h-[500px] rounded-2xl border-2 border-[#626262] backdrop-blur-xl">
-          <div className="p-8">
+          <form onSubmit={handleSubmit} className="p-8">
             <h1 className="text-left text-white font-outfit text-3xl font-medium">
               Sign Up
             </h1>
@@ -101,9 +101,23 @@ export default function Signup() {
                 {error}
               </p>
             )}
+          </form>
+          <div className="flex justify-center">
+            <div className="flex gap-1 mt-8">
+              <span className="text-center text-white font-outfit text-sm font-light">
+                Already have an account?
+              </span>
+              <Button
+                to="/login"
+                className="text-center text-white font-outfit text-sm hover:underline font-light"
+              >
+                {" "}
+                Login
+              </Button>
+            </div>
           </div>
         </div>
-      </form>
+      </div>
     </div>
   );
 }
