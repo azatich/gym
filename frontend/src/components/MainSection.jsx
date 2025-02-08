@@ -1,11 +1,10 @@
 import React from "react";
 import Button from "./Button";
 import { motion } from "motion/react";
-import Section from "./Section";
 
 export default function MainSection() {
   return (
-    <Section className="relative pt-20 px-5 sm:pt-40 sm:px-10 lg:px-20">
+    <div className="relative pt-20 px-5 sm:pt-40 sm:px-10 lg:px-20">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -38,6 +37,6 @@ export default function MainSection() {
           you reach your peak performance.
         </motion.p>
       </div>
-    </Section>
+    </div>
   );
 }

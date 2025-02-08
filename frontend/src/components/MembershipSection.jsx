@@ -2,11 +2,10 @@ import React from "react";
 import dumbbell from "../assets/images/dumbbell.png";
 import Button from "./Button";
 import { motion } from "motion/react";
-import Section from "./Section";
 
 export default function MembershipSection({ membership }) {
   return (
-    <Section
+    <div
       className="mt-20 pb-20 bg-subscription bg-cover bg-no-repeat"
       ref={membership}
     >
@@ -116,6 +115,6 @@ export default function MembershipSection({ membership }) {
           </div>
         </motion.div>
       </div>
-    </Section>
+    </div>
   );
 }

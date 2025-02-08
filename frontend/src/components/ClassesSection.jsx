@@ -4,11 +4,10 @@ import zumba from "../assets/images/zumba.png";
 import yoga from "../assets/images/yoga.png";
 import martial from "../assets/images/martial.png";
 import { motion } from "motion/react";
-import Section from "./Section";
 
 export default function ClassesSection({ classes }) {
   return (
-    <Section className="relative" ref={classes}>
+    <div className="relative" ref={classes}>
       <div className="mt-10 sm:mt-20">
         <h1 className="text-center text-white text-3xl sm:text-4xl font-outfit font-medium">
           Find What Moves You
@@ -109,6 +108,6 @@ export default function ClassesSection({ classes }) {
           </motion.div>
         </div>
       </div>
-    </Section>
+    </div>
   );
 }
